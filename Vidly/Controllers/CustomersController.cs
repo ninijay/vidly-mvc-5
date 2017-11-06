@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -19,6 +20,22 @@ namespace Vidly.Controllers
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
+        }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+
+            return View();
         }
 
         public ActionResult Details(int id)
