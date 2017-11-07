@@ -31,6 +31,7 @@ namespace Vidly.Controllers
             };
             return View("CustomerForm", viewModel);
         }
+
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
